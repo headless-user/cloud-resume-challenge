@@ -1,0 +1,15 @@
+{
+  "name": "Env",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": ["-p", "80:80"],
+  "postStartCommand": "nginx"
+  /*  "mounts": [
+    {
+      "source": "/home/naruto/.config/nvim/",
+      "target": "/root/.config/nvim/",
+      "type": "bind"
+    }
+  ]*/
+}
