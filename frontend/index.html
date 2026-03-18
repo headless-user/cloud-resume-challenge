@@ -21,6 +21,7 @@
     </style>
   </head>
   <body>
+    <p>Visitors: <span id="visitor-count">...</span></p>
     <h1>Your Name</h1>
     <p>DevOps / Cloud Engineer | Python | Bash | Docker | AWS</p>
 
@@ -36,5 +37,14 @@
 
     <h2>Certifications</h2>
     <p>AWS Cloud Practitioner</p>
+    <script>
+      async function loadCount() {
+        const response = await fetch("http://localhost:8000/count");
+        const data = await response.json();
+        document.getElementById("visitor-count").innerText = data;
+      }
+
+      loadCount();
+    </script>
   </body>
 </html>

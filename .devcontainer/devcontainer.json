@@ -3,8 +3,10 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "runArgs": ["-p", "80:80"],
-  "postStartCommand": "nginx"
+  //  "runArgs": ["-p", "80:80"],
+  "runArgs": ["-p", "80:80", "-p", "8000:8000"],
+  //"forwardPorts": [8080, 80, 8000], forwardPorts is vscode only
+  "postStartCommand": "/bin/bash /workspaces/crc/.devcontainer/server.sh"
   /*  "mounts": [
     {
       "source": "/home/naruto/.config/nvim/",
