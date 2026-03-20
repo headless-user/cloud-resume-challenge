@@ -39,7 +39,7 @@
     <p>AWS Cloud Practitioner</p>
     <script>
       async function loadCount() {
-        const response = await fetch("http://localhost:8000/count");
+        const response = await fetch("/api/count");
         const data = await response.json();
         document.getElementById("visitor-count").innerText = data;
       }

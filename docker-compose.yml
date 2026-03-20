@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: frontend
+    depends_on:
+      - backend
+    ports: ["80:80"]
+
+  backend:
+    build: backend
+    volumes:
+      - type: bind
+        source: /home/naruto/projects/crc/backend/
+        target: /app/

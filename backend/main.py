@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 def create_con():
-    con = sqlite3.connect("backend/visitors.db")
+    con = sqlite3.connect("visitors.db")
     cur = con.cursor()
     cur.execute("""CREATE TABLE IF NOT EXISTS v_count (
                 id INTEGER PRIMARY KEY,

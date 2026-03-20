@@ -4,14 +4,14 @@
     "dockerfile": "Dockerfile"
   },
   //  "runArgs": ["-p", "80:80"],
-  "runArgs": ["-p", "80:80", "-p", "8000:8000"],
+  //  "runArgs": ["-p", "80:80", "-p", "8000:8000"],
   //"forwardPorts": [8080, 80, 8000], forwardPorts is vscode only
-  "postStartCommand": "/bin/bash /workspaces/crc/.devcontainer/server.sh"
-  /*  "mounts": [
+  //"postStartCommand": "docker compose -f /workspaces/crc/docker-compose.yml up",
+  "mounts": [
     {
-      "source": "/home/naruto/.config/nvim/",
-      "target": "/root/.config/nvim/",
+      "source": "/var/run/docker.sock",
+      "target": "/var/run/docker.sock",
       "type": "bind"
     }
-  ]*/
+  ]
 }
