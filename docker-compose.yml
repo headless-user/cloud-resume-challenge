@@ -9,5 +9,5 @@ services:
     build: backend
     volumes:
       - type: bind
-        source: /home/naruto/projects/crc/backend/
+        source: /home/naruto/projects/crc/backend/    #this is my path, find you own! :P
         target: /app/
