@@ -11,3 +11,7 @@ services:
       - type: bind
         source: /home/naruto/projects/crc/backend/    #this is my path, find you own! :P
         target: /app/
+
+  cloudfare:
+    image: cloudflare/cloudflared:latest
+    command: ["tunnel", "--no-autoupdate", "run", "--token", "${TOKEN_TUNNEL}"]
