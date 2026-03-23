@@ -1,0 +1,11 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  resume:
+    runs-on: self-hosted
+    steps:
+      - run: docker compose up --build -d
+        working-directory: ~/projects/crc
