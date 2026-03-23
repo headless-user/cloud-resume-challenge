@@ -14,5 +14,6 @@ server {
 
     location /api/count {
         proxy_pass http://backend:8000/count;
+        limit_req zone=one burst=5;
     }
 }
