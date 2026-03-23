@@ -40,15 +40,16 @@ cloudflared (tunnel daemon, container)
 Nginx (frontend container)
   │
   ├── serves index.html
-  └── proxies /api/count → FastAPI (backend container)
-                                │
-                                ▼
-                            SQLite (bind mounted from host disk)
+  └── proxies /api/count → rate limiter → FastAPI (backend container)
+                                                │
+                                                ▼
+                                            SQLite (bind mounted from host disk)
 ```
 
 - Cloudflare handles TLS — the origin just serves plain HTTP
 - No inbound ports open on my machine, ever
 - The visitor counter survives container rebuilds because `visitors.db` is bind-mounted from the host
+- `/api/count` is rate limited at Nginx — 1 request/second per IP, burst of 5
 
 ---
 
@@ -58,7 +59,7 @@ Nginx (frontend container)
 Host Machine
 │
 ├── Docker Compose
-│     ├── frontend  — Nginx, serves HTML, proxies /api/count
+│     ├── frontend  — Nginx, serves HTML, rate limits + proxies /api/count
 │     ├── backend   — FastAPI, /count endpoint, reads/writes visitors.db
 │     └── cloudflared — outbound tunnel to Cloudflare edge
 │
@@ -133,6 +134,7 @@ crc/
   frontend/
     Dockerfile
     default            ← Nginx config
+    rate_limit.conf    ← Nginx rate limiting (1r/s per IP, burst 5)
     index.html
   backend/
     Dockerfile
